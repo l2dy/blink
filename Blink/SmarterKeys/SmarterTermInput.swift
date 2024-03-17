@@ -31,6 +31,7 @@
 
 import UIKit
 import Combine
+import GameController
 
 
 class CaretHider {
@@ -177,7 +178,8 @@ class CaretHider {
   
   override var inputAssistantItem: UITextInputAssistantItem {
     let item = super.inputAssistantItem
-    if KBTracker.shared.isHardwareKB {
+    let isHardwareKB = GCKeyboard.coalesced != nil
+    if isHardwareKB {
       item.trailingBarButtonGroups = []
       item.leadingBarButtonGroups = []
     } else if _barButtonItemGroup != nil {
